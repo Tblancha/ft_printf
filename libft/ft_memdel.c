@@ -1,31 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_memdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tblancha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/23 20:26:40 by tblancha          #+#    #+#             */
-/*   Updated: 2019/07/28 04:08:12 by tblancha         ###   ########.fr       */
+/*   Created: 2019/04/12 16:51:30 by tblancha          #+#    #+#             */
+/*   Updated: 2019/04/24 11:38:28 by tblancha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdarg.h>
-# include "libft/libft.h"
-
-typedef struct		s_struct
+void	ft_memdel(void **ap)
 {
-	int		iflag[256];
-	int		cut[2];
-	int		token;
-	char	*str;
-}					t_struct;
-
-int					parsing(t_struct *stprintf);
-
-#endif
+	if (ap)
+	{
+		free(*ap);
+		*ap = NULL;
+	}
+}

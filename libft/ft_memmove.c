@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tblancha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/23 20:26:40 by tblancha          #+#    #+#             */
-/*   Updated: 2019/07/28 04:08:12 by tblancha         ###   ########.fr       */
+/*   Created: 2019/04/11 16:56:02 by tblancha          #+#    #+#             */
+/*   Updated: 2019/04/24 01:32:37 by tblancha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdarg.h>
-# include "libft/libft.h"
-
-typedef struct		s_struct
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	int		iflag[256];
-	int		cut[2];
-	int		token;
-	char	*str;
-}					t_struct;
+	unsigned char	*d;
+	unsigned char	*s;
 
-int					parsing(t_struct *stprintf);
-
-#endif
+	if (dst < src)
+		dst = ft_memcpy(dst, src, len);
+	else
+	{
+		d = (unsigned char *)dst;
+		s = (unsigned char *)src;
+		d = d + len;
+		s = s + len;
+		while (len--)
+			*--d = *--s;
+	}
+	return (dst);
+}

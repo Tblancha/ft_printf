@@ -1,31 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tblancha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/23 20:26:40 by tblancha          #+#    #+#             */
-/*   Updated: 2019/07/28 04:08:12 by tblancha         ###   ########.fr       */
+/*   Created: 2019/04/12 11:33:13 by tblancha          #+#    #+#             */
+/*   Updated: 2019/04/24 12:10:14 by tblancha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdarg.h>
-# include "libft/libft.h"
-
-typedef struct		s_struct
+void	ft_putstr(char const *str)
 {
-	int		iflag[256];
-	int		cut[2];
-	int		token;
-	char	*str;
-}					t_struct;
-
-int					parsing(t_struct *stprintf);
-
-#endif
+	if (!str)
+		return ;
+	write(1, str, ft_strlen(str));
+}

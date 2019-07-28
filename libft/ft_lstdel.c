@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_lstdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tblancha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/23 20:26:40 by tblancha          #+#    #+#             */
-/*   Updated: 2019/07/28 04:08:12 by tblancha         ###   ########.fr       */
+/*   Created: 2019/04/19 20:39:39 by tblancha          #+#    #+#             */
+/*   Updated: 2019/04/22 22:55:52 by tblancha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdarg.h>
-# include "libft/libft.h"
-
-typedef struct		s_struct
+void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
 {
-	int		iflag[256];
-	int		cut[2];
-	int		token;
-	char	*str;
-}					t_struct;
+	t_list	*cpynext;
 
-int					parsing(t_struct *stprintf);
-
-#endif
+	while (*alst)
+	{
+		cpynext = (*alst)->next;
+		ft_lstdelone(alst, (*del));
+		*alst = cpynext;
+	}
+	*alst = NULL;
+}

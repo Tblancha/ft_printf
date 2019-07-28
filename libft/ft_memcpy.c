@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tblancha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/23 20:26:40 by tblancha          #+#    #+#             */
-/*   Updated: 2019/07/28 04:08:12 by tblancha         ###   ########.fr       */
+/*   Created: 2019/04/11 16:35:02 by tblancha          #+#    #+#             */
+/*   Updated: 2019/04/23 08:17:06 by tblancha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdarg.h>
-# include "libft/libft.h"
-
-typedef struct		s_struct
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	int		iflag[256];
-	int		cut[2];
-	int		token;
-	char	*str;
-}					t_struct;
+	size_t	i;
+	char	*d;
+	char	*s;
 
-int					parsing(t_struct *stprintf);
-
-#endif
+	i = 0;
+	d = (char*)dst;
+	s = (char*)src;
+	while (i < n)
+	{
+		d[i] = s[i];
+		i++;
+	}
+	return (dst);
+}

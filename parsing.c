@@ -6,7 +6,7 @@
 /*   By: tblancha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/23 20:38:40 by tblancha          #+#    #+#             */
-/*   Updated: 2019/07/25 02:43:03 by tblancha         ###   ########.fr       */
+/*   Updated: 2019/07/28 04:14:08 by tblancha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,23 +64,31 @@ static int		findpourcent(t_struct *stprintf)
 int				parsing(t_struct *stprintf)
 {
 	int	i;
+	int k;
 
+	k = 0;
 	i = 0;
 	if (!findpourcent(stprintf))
 		return (0);
 	i = stprintf->cut[0] + 1;
 	while (stprintf->str[i])
 	{
-		if (stprintf->str[i] == '%')
+		if ((k = isflag(stprintf, i)))
 		{
-			i++;
-			if (stprintf->str[stprintf->cut[0]] == '%')
-			{
-				stprintf->iflag[(int)%] = 1;
-				return (1);
-			}
-			while (stprintf->cut[0]
+			stprintf->iflag[(int)(stprintf->str[i])] = k;
+			i += k;
 		}
-		i++;
+		else if (istoken(stprintf, i))
+		{
+			stprintf->cut[1] = i;
+			return ((int)(stprintf->str[i]));
+		}
+		else
+		{
+			stprintf->cut[1] = i - 1;
+			return (-1);
+		}
 	}
+	stprintf->cut[1] = i - 1;
+	return (-1);
 }

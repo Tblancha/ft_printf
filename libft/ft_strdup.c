@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tblancha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/23 20:26:40 by tblancha          #+#    #+#             */
-/*   Updated: 2019/07/28 04:08:12 by tblancha         ###   ########.fr       */
+/*   Created: 2019/04/06 03:27:24 by tblancha          #+#    #+#             */
+/*   Updated: 2019/04/24 04:06:18 by tblancha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include <stdlib.h>
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdarg.h>
-# include "libft/libft.h"
-
-typedef struct		s_struct
+char	*ft_strdup(const char *s1)
 {
-	int		iflag[256];
-	int		cut[2];
-	int		token;
-	char	*str;
-}					t_struct;
+	int		i;
+	char	*s2;
 
-int					parsing(t_struct *stprintf);
-
-#endif
+	i = 0;
+	s2 = NULL;
+	while (s1[i])
+		i++;
+	if (!(s2 = (char*)malloc(sizeof(char) * i + 1)))
+		return (NULL);
+	i = 0;
+	while (s1[i])
+	{
+		s2[i] = (char)s1[i];
+		i++;
+	}
+	s2[i] = 0;
+	return (s2);
+}

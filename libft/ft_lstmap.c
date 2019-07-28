@@ -1,31 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tblancha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/23 20:26:40 by tblancha          #+#    #+#             */
-/*   Updated: 2019/07/28 04:08:12 by tblancha         ###   ########.fr       */
+/*   Created: 2019/04/23 00:46:23 by tblancha          #+#    #+#             */
+/*   Updated: 2019/04/26 04:36:34 by tblancha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdarg.h>
-# include "libft/libft.h"
-
-typedef struct		s_struct
+t_list		*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
-	int		iflag[256];
-	int		cut[2];
-	int		token;
-	char	*str;
-}					t_struct;
+	t_list	*begin;
+	t_list	*current;
+	t_list	*flst;
 
-int					parsing(t_struct *stprintf);
-
-#endif
+	if (!lst)
+		return (NULL);
+	begin = NULL;
+	while (lst)
+	{
+		flst = f(lst);
+		if (begin)
+		{
+			current->next = flst;
+			current = current->next;
+		}
+		else
+		{
+			begin = flst;
+			current = begin;
+		}
+		lst = lst->next;
+	}
+	return (begin);
+}

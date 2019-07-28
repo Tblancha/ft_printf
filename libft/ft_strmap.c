@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_strmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tblancha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/23 20:26:40 by tblancha          #+#    #+#             */
-/*   Updated: 2019/07/28 04:08:12 by tblancha         ###   ########.fr       */
+/*   Created: 2019/04/17 04:13:14 by tblancha          #+#    #+#             */
+/*   Updated: 2019/04/24 14:19:36 by tblancha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdarg.h>
-# include "libft/libft.h"
-
-typedef struct		s_struct
+char	*ft_strmap(char const *s, char (*f)(char))
 {
-	int		iflag[256];
-	int		cut[2];
-	int		token;
+	size_t	lenstr;
 	char	*str;
-}					t_struct;
+	size_t	i;
 
-int					parsing(t_struct *stprintf);
-
-#endif
+	if (!s)
+		return (NULL);
+	lenstr = ft_strlen(s);
+	if (!(str = (char*)malloc(sizeof(char) * lenstr + 1)))
+		return (NULL);
+	ft_strcpy(str, s);
+	i = 0;
+	while (lenstr--)
+	{
+		str[i] = f(str[i]);
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
+}

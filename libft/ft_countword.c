@@ -1,37 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_pourcent_valid.c                             :+:      :+:    :+:   */
+/*   ft_countword.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tblancha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/25 02:43:42 by tblancha          #+#    #+#             */
-/*   Updated: 2019/07/25 02:50:33 by tblancha         ###   ########.fr       */
+/*   Created: 2019/04/25 00:26:14 by tblancha          #+#    #+#             */
+/*   Updated: 2019/04/26 10:44:10 by tblancha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int		check_pourcent_valid(t_struct *stprintf)
+size_t	ft_countword(char const *s, char c)
 {
-	int	i;
+	size_t	i;
+	size_t	w;
 
-	i = stprintf->cut[0] + 1;
-	while (stprintf->str[i])
+	i = 0;
+	w = 0;
+	if (!s)
+		return (0);
+	while (s[i])
 	{
-		if (istoken(stprintf, i))
-		{
-			stprintf->cut[1] = i;
-			return (1);
-		}
-		else if (isflag(stprintf, i) > 0)
+		while (s[i] == c && s[i])
 			i++;
-		else
-		{
-			stprintf->cut[1] = i - 1;
-			return (0);
-		}
+		if (s[i])
+			w++;
+		while (s[i] != c && s[i])
+			i++;
 	}
-	stprintf->cut[1] = i - 1;
-	return (0);
+	return (w);
 }

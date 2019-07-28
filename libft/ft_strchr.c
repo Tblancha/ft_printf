@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tblancha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/23 20:26:40 by tblancha          #+#    #+#             */
-/*   Updated: 2019/07/28 04:08:12 by tblancha         ###   ########.fr       */
+/*   Created: 2019/04/16 02:15:58 by tblancha          #+#    #+#             */
+/*   Updated: 2019/04/24 06:08:14 by tblancha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdarg.h>
-# include "libft/libft.h"
-
-typedef struct		s_struct
+char	*ft_strchr(const char *s, int c)
 {
-	int		iflag[256];
-	int		cut[2];
-	int		token;
-	char	*str;
-}					t_struct;
+	size_t	lens;
+	size_t	i;
+	char	*src;
 
-int					parsing(t_struct *stprintf);
-
-#endif
+	src = (char*)s;
+	lens = ft_strlen(src) + 1;
+	i = 0;
+	while (lens--)
+	{
+		if (src[i] == (char)c)
+			return (&src[i]);
+		i++;
+	}
+	return (NULL);
+}

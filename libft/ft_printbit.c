@@ -1,31 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_printbit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tblancha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/23 20:26:40 by tblancha          #+#    #+#             */
-/*   Updated: 2019/07/28 04:08:12 by tblancha         ###   ########.fr       */
+/*   Created: 2019/06/14 03:33:03 by tblancha          #+#    #+#             */
+/*   Updated: 2019/06/14 03:51:11 by tblancha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdarg.h>
-# include "libft/libft.h"
-
-typedef struct		s_struct
+void	ft_printbit(int bin)
 {
-	int		iflag[256];
-	int		cut[2];
-	int		token;
-	char	*str;
-}					t_struct;
+	size_t power;
 
-int					parsing(t_struct *stprintf);
-
-#endif
+	power = 32;
+	if (bin < 0)
+	{
+		ft_putchar('-');
+		bin = -bin;
+	}
+	while (power-- != 0)
+	{
+		if (bin >= ft_pow(2, power))
+		{
+			ft_putchar('1');
+			bin = bin - ft_pow(2, power);
+		}
+		else
+			ft_putchar('0');
+		if (power % 8 == 0)
+			ft_putchar(' ');
+	}
+	ft_putchar('\n');
+}
