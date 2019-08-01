@@ -6,7 +6,7 @@
 /*   By: tblancha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/23 20:38:40 by tblancha          #+#    #+#             */
-/*   Updated: 2019/07/28 04:14:08 by tblancha         ###   ########.fr       */
+/*   Updated: 2019/08/01 02:38:18 by tblancha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,11 @@ int				isflag(t_struct *stprintf, int i)
 			return (2);
 		return (1);
 	}
+	else if (ft_isdigit(stprintf->str[i]))
+		return (1);
 	return (0);
 }
+
 static int		findpourcent(t_struct *stprintf)
 {
 	int	i;
@@ -59,6 +62,28 @@ static int		findpourcent(t_struct *stprintf)
 		i++;
 	}
 	return (0);
+}
+
+void			largeurdechamps(t_struct *stprintf)
+{
+	int		i;
+	int		sign;
+
+	if (stprintf->iflag[(int)'-'])
+		sign = -1;
+	else
+		sign = 1;
+	i = stprintf->cut[0];
+	while (i < stprintf->cut[1] && stprintf->str[i] != '.')
+	{
+		if (ft_isdigit(stprintf->str[i]) && stprintf->str[i] != '0')
+		{
+			stprintf->iflag[(int)'-'] = sign * ft_atoi(stprintf->str + i);
+			return ;
+		}
+		i++;
+	}
+	stprintf->iflag[(int)'-'] = 0;
 }
 
 int				parsing(t_struct *stprintf)
@@ -77,10 +102,19 @@ int				parsing(t_struct *stprintf)
 		{
 			stprintf->iflag[(int)(stprintf->str[i])] = k;
 			i += k;
+			if (stprintf->str[i] && stprintf->str[i - k] == '.'
+					&& ft_isdigit(stprintf->str[i]))
+			{
+				stprintf->iflag[(int)'.'] = ft_atoi((stprintf->str) + i);
+				if (stprintf->iflag[(int)'.'] == 0)
+					stprintf->iflag[(int)'.'] = -1; //si '.' == -1 alors ne mettre aucun charactere, c'est pour differencier de 0
+			}
 		}
 		else if (istoken(stprintf, i))
 		{
 			stprintf->cut[1] = i;
+			largeurdechamps(stprintf);
+			stprintf->iflag[(int)stprintf->str[i]] = 1;
 			return ((int)(stprintf->str[i]));
 		}
 		else
