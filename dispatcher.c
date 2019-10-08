@@ -78,7 +78,6 @@ int				dispatcher(t_token *token_utils, char *str_original,
 		{
 			buffer_s->len_total += ft_putchar_buff(str_original[i],
 			buffer_s->buff);
-			printf("??? quoi quoi quoi\n");
 		}
 		else if (token_utils->list[i] == TOKEN_FOUND_PERCENT)
 		{

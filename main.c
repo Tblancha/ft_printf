@@ -48,11 +48,28 @@ int main()
 */
 int a;
 int b;
-	
+
+a = ft_printf("%d|", -42);
+printf("\n");
+b = printf("%d|", -42);
+printf("\nme   = %d\nreal = %d\n", a, b);
+printf("\n");
+printf("\n");
 a = ft_printf("%10s|", "");
 printf("\n");
 b = printf("%10s|", "");
 printf("\nme   = %d\nreal = %d\n", a, b);
+printf("\n");
+a = ft_printf("%.2s is a string", "this");
+printf("\n");
+b = printf("%.2s is a string", "this");
+printf("\nme   = %d\nreal = %d\n", a, b);
+printf("\n");
+a = ft_printf(" is a string");
+printf("\n");
+b = printf(" is a string");
+printf("\nme   = %d\nreal = %d\n", a, b);
+printf("\n");
 //	ft_printf("%-100y\n");
 /*	ft_printf("%-100y\n");
 	

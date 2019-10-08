@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "state_machina.h"
+#include <stdio.h>
 
 int		ft_putstr_buff(char *str, char *buff, int buff_index, int n)
 {
@@ -30,10 +31,15 @@ int		ft_putstr_buff(char *str, char *buff, int buff_index, int n)
 int		buff_n_manager(char *data_to_write, char *buff, int size)
 {
 	int		buff_index;
+	int		len_write;
 
 	buff_index = ft_strlen(buff);
+	if ((int)ft_strlen(data_to_write) >= size)
+		len_write = size;
+	else
+		len_write = (int)ft_strlen(data_to_write);
 	if (!(*data_to_write))
-		return (-1);
+		return (0);
 	buff_sec(buff_index, buff);
 	if ((int)check_buff(buff_index) > size + 1)
 	{
@@ -47,7 +53,7 @@ int		buff_n_manager(char *data_to_write, char *buff, int size)
 		buff_index = 0;
 		ft_putstr_buff(data_to_write, buff, buff_index, size);
 	}
-	return (size);
+	return (len_write);
 }
 
 int		buff_manager(char *data_to_write, char *buff)
@@ -56,7 +62,7 @@ int		buff_manager(char *data_to_write, char *buff)
 
 	buff_index = ft_strlen(buff);
 	if (!(*data_to_write))
-		return (-1);
+		return (0);
 	buff_sec(buff_index, buff);
 	if ((size_t)check_buff(buff_index) > ft_strlen(data_to_write) + 1)
 	{

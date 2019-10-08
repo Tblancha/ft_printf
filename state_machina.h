@@ -95,6 +95,11 @@ typedef int					(*t_pf_apply_precision)
 	(t_buff *, char *, t_info_data_to_write *);
 
 /*
+ ** _______ FONCTION PRINCIPAL
+*/
+int		ft_printf(char *str, ...);
+
+/*
  ** ________ STATE_MACHINA_PARSE
 */
 int							*recognize_tokens(char **str, t_token *token);
