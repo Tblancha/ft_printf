@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "state_machina.h": "c",
+        "autre.h": "c"
+    }
+}
