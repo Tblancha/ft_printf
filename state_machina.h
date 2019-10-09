@@ -197,7 +197,7 @@ int							real_value_of_padding_o
 void						apply_flag_router(t_buff *buff,
 		char *data_to_write, t_info_data_to_write *option);
 int							prefix_router(char *buff,
-		t_info_data_to_write *option);
+		t_info_data_to_write *option, char *data_to_write);
 
 /*
  ** ________ IGNORE_FLAG

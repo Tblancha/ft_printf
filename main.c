@@ -49,6 +49,18 @@ int main()
 int a;
 int b;
 
+
+a = ft_printf("|%x| |%#.x| |%#.0x|", 0, 0, 0);
+printf("\n");
+b = printf("|%x| |%#.x| |%#.0x|", 0, 0, 0);
+printf("\nme   = %d\nreal = %d\n", a, b);
+printf("\n");
+a = ft_printf("|%#.1x| |%#.2x| |%#.10x| |%#.10x|", 0, 0, 0, 42);
+printf("\n");
+b = printf("|%#.1x| |%#.2x| |%#.10x| |%#.10x|", 0, 0, 0, 42);
+printf("\nme   = %d\nreal = %d\n", a, b);
+printf("\n");
+printf("\n");
 a = ft_printf("%d|", -42);
 printf("\n");
 b = printf("%d|", -42);

@@ -72,21 +72,23 @@ void			apply_flag_router(t_buff *buffer_s, char *data_to_write,
 			buffer_s->len_total += ft_putchar_buff(' ', buffer_s->buff);
 	data_to_write = handler_signe_or_flag_plus(buffer_s, data_to_write, option);
 	if (option->flag_bin & flag_to_bin(_TOKEN_FLAG_DIESE) && (option->flag_bin & flag_to_bin(_TOKEN_FLAG_ZERO)))
-		buffer_s->len_total += prefix_router(buffer_s->buff, option);
+		buffer_s->len_total += prefix_router(buffer_s->buff, option, data_to_write);
 	if (option->flag_bin & flag_to_bin(_TOKEN_FLAG_ZERO))
 		buffer_s->len_total += ft_repeat_char_buff('0', option->padding, buffer_s->buff);
 	else if (!(option->flag_bin & flag_to_bin(_TOKEN_FLAG_MINUS)))
 		buffer_s->len_total += ft_repeat_char_buff(' ', option->padding, buffer_s->buff);
 	data_to_write = handler_signe_or_flag_plus(buffer_s, data_to_write, option);
 	if (option->flag_bin & flag_to_bin(_TOKEN_FLAG_DIESE) && !(option->flag_bin & flag_to_bin(_TOKEN_FLAG_ZERO)))
-		buffer_s->len_total += prefix_router(buffer_s->buff, option);
+		buffer_s->len_total += prefix_router(buffer_s->buff, option, data_to_write);
 	pf_apply_precision(option->type)(buffer_s, data_to_write, option);
 	if (option->flag_bin & flag_to_bin(_TOKEN_FLAG_MINUS))
 		buffer_s->len_total += ft_repeat_char_buff(' ', option->padding, buffer_s->buff);
 }
 
-int			prefix_router(char *buff, t_info_data_to_write *option)
+int			prefix_router(char *buff, t_info_data_to_write *option, char *data_to_write)
 {
+	if ((data_to_write[0] == 0 || data_to_write[0] == '0') && option->type != _TOKEN_TYPE_OCTAL)
+		return (0);
 	if (option->type == _TOKEN_TYPE_HEX_MAJ)
 	{
 		buff_manager("0X", buff);
