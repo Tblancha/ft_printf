@@ -23,7 +23,7 @@ char			*convert_octal_to_str(va_list arg, t_info_data_to_write *option)
 		number = (unsigned short)va_arg(arg, unsigned int);
 	else if ((option->flag_bin & flag_to_bin(_TOKEN_FLAG_L_MIN))
 			|| (option->flag_bin & flag_to_bin(_TOKEN_FLAG_LL)))
-		number = (unsigned long)va_arg(arg, unsigned long);
+		number = (unsigned long long)va_arg(arg, unsigned long long);
 	else
 		number = (unsigned int)va_arg(arg, unsigned int);
 	data_to_write = convert_to_base_long(number, 8);
@@ -41,7 +41,7 @@ char			*convert_uint_to_str(va_list arg, t_info_data_to_write *option)
 		number = (unsigned short)va_arg(arg, unsigned int);
 	else if ((option->flag_bin & flag_to_bin(_TOKEN_FLAG_L_MIN))
 			|| (option->flag_bin & flag_to_bin(_TOKEN_FLAG_LL)))
-		number = (unsigned long)va_arg(arg, unsigned long);
+		number = (unsigned long long)va_arg(arg, unsigned long long);
 	else
 		number = (unsigned int)va_arg(arg, unsigned int);
 	data_to_write = convert_to_base_ulong(number, 10);
@@ -60,7 +60,7 @@ char			*convert_hex_min_to_str(va_list arg,
 		number = (unsigned short)va_arg(arg, unsigned int);
 	else if ((option->flag_bin & flag_to_bin(_TOKEN_FLAG_L_MIN))
 			|| (option->flag_bin & flag_to_bin(_TOKEN_FLAG_LL)))
-		number = (unsigned long)va_arg(arg, unsigned long);
+		number = (unsigned long long)va_arg(arg, unsigned long long);
 	else
 		number = (unsigned int)va_arg(arg, unsigned int);
 	data_to_write = convert_to_base_min_long(number, 16);
@@ -79,9 +79,25 @@ char			*convert_hex_maj_to_str(va_list arg,
 		number = (unsigned short)va_arg(arg, unsigned int);
 	else if ((option->flag_bin & flag_to_bin(_TOKEN_FLAG_L_MIN))
 			|| (option->flag_bin & flag_to_bin(_TOKEN_FLAG_LL)))
-		number = (unsigned long)va_arg(arg, unsigned long);
+		number = (unsigned long long)va_arg(arg, unsigned long long);
 	else
 		number = (unsigned int)va_arg(arg, unsigned int);
 	data_to_write = convert_to_base_long(number, 16);
+	return (data_to_write);
+}
+
+char			*convert_float_to_str(va_list arg,
+		t_info_data_to_write *option)
+{
+	char			*data_to_write;
+	long double		number;
+
+	if (option->flag_bin & flag_to_bin(_TOKEN_FLAG_L_MIN))
+		number = va_arg(arg, long double);
+	else if (option->flag_bin & flag_to_bin(_TOKEN_FLAG_L_MAJ))
+		number = va_arg(arg, long double);
+	else
+		number = va_arg(arg, double);
+	data_to_write = convert_float(number);
 	return (data_to_write);
 }

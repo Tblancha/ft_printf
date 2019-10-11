@@ -11,8 +11,8 @@
 /* ************************************************************************** */
 
 #include "state_machina.h"
-
-char	*convert_to_base_ulong(unsigned long number_to_convert,
+#include <stdio.h>
+char	*convert_to_base_ulong(unsigned long long number_to_convert,
 		const unsigned int base)
 {
 	static	char	elements_of_base[] = "0123456789ABCDEF";
@@ -31,7 +31,7 @@ char	*convert_to_base_ulong(unsigned long number_to_convert,
 	return (converted_num);
 }
 
-char	*convert_to_base_min_ulong(unsigned long number_to_convert,
+char	*convert_to_base_min_ulong(unsigned long long number_to_convert,
 		const unsigned int base)
 {
 	static	char	elements_of_base[] = "0123456789abcdef";
@@ -50,7 +50,7 @@ char	*convert_to_base_min_ulong(unsigned long number_to_convert,
 	return (converted_num);
 }
 
-char	*convert_to_base_long(long number_to_convert,
+char	*convert_to_base_long(intmax_t number_to_convert,
 		const unsigned int base)
 {
 	static	char	elements_of_base[] = "0123456789ABCDEF";
@@ -73,7 +73,7 @@ char	*convert_to_base_long(long number_to_convert,
 	return (converted_num);
 }
 
-char	*convert_to_base_min_long(long number_to_convert,
+char	*convert_to_base_min_long(intmax_t number_to_convert,
 		const unsigned int base)
 {
 	static	char	elements_of_base[] = "0123456789abcdef";
@@ -94,4 +94,30 @@ char	*convert_to_base_min_long(long number_to_convert,
 	if (*converted_num == '\0')
 		*--converted_num = '0';
 	return (converted_num);
+}
+
+char	*convert_float(long double number)
+{
+	long		p_entier;
+	long		p_mantisse;
+	char		*data;
+	char		*data2;
+
+	p_entier = (long)number;
+	number -= (long double)p_entier;
+	number *= 1000000;
+	p_mantisse = (long)number;
+	data = convert_to_base_long(p_mantisse, 10);
+	*--data = '.';
+	data2 = convert_to_base_long(p_entier, 10);
+	p_entier = ft_strlen(data2);
+	p_mantisse = p_entier;
+	while (--p_entier)
+		data2++;
+	while (p_mantisse)
+	{
+		*--data = *data2--;
+		--p_mantisse;
+	}
+	return (data);
 }

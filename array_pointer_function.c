@@ -27,6 +27,7 @@ t_pf_dispatch_ignore_flag		pf_dispatch_ignore_flag(int type)
 	array[_TOKEN_TYPE_HEX_MAJ] = ignore_flag_for_o_x_xmaj;
 	array[_TOKEN_TYPE_NONE] = ignore_flag_for_none;
 	array[_TOKEN_TYPE_PERCENT] = ignore_flag_for_none;
+	array[_TOKEN_TYPE_FLOAT] =  ignore_flag_for_float;
 	return (array[type]);
 }
 
@@ -45,6 +46,7 @@ t_pf_calcul_padding			pf_dispatch_calcul_padding(int type)
 	array[_TOKEN_TYPE_HEX_MAJ] = real_value_of_padding_pdiuxxmaj;
 	array[_TOKEN_TYPE_NONE] = real_value_of_padding_c_s;
 	array[_TOKEN_TYPE_PERCENT] = real_value_of_padding_c_s;
+	array[_TOKEN_TYPE_FLOAT] = real_value_of_padding_pdiuxxmaj;
 	return (array[type]);
 }
 
@@ -61,8 +63,9 @@ t_pf_dispatch_type			pf_conversion_to_use(int type)
 	array[_TOKEN_TYPE_UNSIGNED_INT] = convert_uint_to_str;
 	array[_TOKEN_TYPE_HEX_MIN] = convert_hex_min_to_str;
 	array[_TOKEN_TYPE_HEX_MAJ] = convert_hex_maj_to_str;
-	array[_TOKEN_TYPE_PERCENT] = do_nada; // this will change.
+	array[_TOKEN_TYPE_PERCENT] = do_nada;
 	array[_TOKEN_TYPE_NONE] = do_nada;
+	array[_TOKEN_TYPE_FLOAT] = convert_float_to_str;
 	return (array[type]);
 }
 
@@ -79,7 +82,7 @@ t_pf_apply_precision			pf_apply_precision(int type)
 	array[_TOKEN_TYPE_UNSIGNED_INT] = apply_precision_pdiouxxmaj;
 	array[_TOKEN_TYPE_HEX_MIN] = apply_precision_pdiouxxmaj;
 	array[_TOKEN_TYPE_HEX_MAJ] = apply_precision_pdiouxxmaj;
-//    array[_TOKEN_TYPE_FLOAT] = ;
+    array[_TOKEN_TYPE_FLOAT] = apply_precision_pdiouxxmaj;
     array[_TOKEN_TYPE_NONE] = apply_precision_cs;
 	array[_TOKEN_TYPE_PERCENT] = apply_precision_cs;
 	return (array[type]);

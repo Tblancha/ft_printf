@@ -133,13 +133,14 @@ int							ft_putchar_buff(char c, char *buff);
  ** ________ CONVERT_TO BASE
 */
 char						*convert_to_base_ulong
-(unsigned long number_to_convert, const unsigned int base);
+(unsigned long long number_to_convert, const unsigned int base);
 char						*convert_to_base_min_ulong
-(unsigned long number_to_convert, const unsigned int base);
-char						*convert_to_base_long(long number_to_convert,
+(unsigned long long number_to_convert, const unsigned int base);
+char						*convert_to_base_long(intmax_t number_to_convert,
 		const unsigned int base);
-char						*convert_to_base_min_long(long number_to_convert,
+char						*convert_to_base_min_long(intmax_t number_to_convert,
 		const unsigned int base);
+char						*convert_float(long double number);
 
 /*
  ** ________ CONVERT_VA_ARG_TO_STR
@@ -161,6 +162,8 @@ char						*convert_uint_to_str(va_list arg,
 char						*convert_hex_min_to_str(va_list arg,
 		t_info_data_to_write *option);
 char						*convert_hex_maj_to_str(va_list arg,
+		t_info_data_to_write *option);
+char						*convert_float_to_str(va_list arg,
 		t_info_data_to_write *option);
 
 /*
@@ -211,6 +214,7 @@ void						ignore_flag_for_c_s(t_info_data_to_write *option);
 void						ignore_flag_for_p(t_info_data_to_write *option);
 void						ignore_flag_for_none(t_info_data_to_write *option);
 void						ignore_flag(t_info_data_to_write *option, int flag);
+void						ignore_flag_for_float(t_info_data_to_write *option);
 void						ignore_flag_priority(t_info_data_to_write *option,
 		int strong, int weak);
 

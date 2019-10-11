@@ -57,8 +57,8 @@ char			*convert_p_to_str(va_list arg, t_info_data_to_write *option)
 
 char			*convert_d_to_str(va_list arg, t_info_data_to_write *option)
 {
-	char	*data_to_write;
-	long	number;
+	char		*data_to_write;
+	long long	number;
 
 	if (option->flag_bin & flag_to_bin(_TOKEN_FLAG_HH))
 		number = (char)va_arg(arg, int);
@@ -66,7 +66,7 @@ char			*convert_d_to_str(va_list arg, t_info_data_to_write *option)
 		number = (short)va_arg(arg, int);
 	else if ((option->flag_bin & flag_to_bin(_TOKEN_FLAG_L_MIN))
 			|| (option->flag_bin & flag_to_bin(_TOKEN_FLAG_LL)))
-		number = (long)va_arg(arg, long);
+		number = (long long)va_arg(arg, long long);
 	else
 		number = (int)va_arg(arg, int);
 	data_to_write = convert_to_base_long(number, 10);

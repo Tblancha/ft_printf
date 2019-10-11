@@ -49,7 +49,31 @@ int main()
 int a;
 int b;
 
+a = ft_printf("%f", 12.52);
+printf("\n");
+b = printf("%f", 12.52);
+printf("\nme   = %d\nreal = %d\n", a, b);
+printf("\n");
 
+a = ft_printf("%f", 12.52);
+printf("\n");
+b = printf("%f", 12.52);
+printf("\nme   = %d\nreal = %d\n", a, b);
+printf("\n");
+
+a = ft_printf("%#.0x", 12);
+printf("\n");
+b = printf("%#.0x", 12);
+printf("\nme   = %d\nreal = %d\n", a, b);
+printf("\n");
+
+a = ft_printf("{%d}", 0);
+printf("\n");
+b = printf("{%d}", 0);
+printf("\nme   = %d\nreal = %d\n", a, b);
+printf("\n");
+
+/*
 a = ft_printf("|%x| |%#.x| |%#.0x|", 0, 0, 0);
 printf("\n");
 b = printf("|%x| |%#.x| |%#.0x|", 0, 0, 0);
@@ -82,6 +106,7 @@ printf("\n");
 b = printf(" is a string");
 printf("\nme   = %d\nreal = %d\n", a, b);
 printf("\n");
+*/
 //	ft_printf("%-100y\n");
 /*	ft_printf("%-100y\n");
 	

@@ -37,7 +37,10 @@ static char		*handler_signe_or_flag_plus(t_buff *buffer_s, char *data_to_write,
 {
 	static int	check = 0;
 
-	if (option->flag_bin & flag_to_bin(_TOKEN_FLAG_PLUS) && check == 0)
+	if ((option->flag_bin & flag_to_bin(_TOKEN_FLAG_PLUS) && check == 0
+	&& (option->flag_bin & flag_to_bin(_TOKEN_FLAG_ZERO)))
+	|| (option->flag_bin & flag_to_bin(_TOKEN_FLAG_PLUS) && check == 1
+	&& !(option->flag_bin & flag_to_bin(_TOKEN_FLAG_ZERO))))
 	{
 		if (data_to_write[0] == '-')
 			buffer_s->len_total += ft_putchar_buff(*data_to_write++, buffer_s->buff);
@@ -87,7 +90,8 @@ void			apply_flag_router(t_buff *buffer_s, char *data_to_write,
 
 int			prefix_router(char *buff, t_info_data_to_write *option, char *data_to_write)
 {
-	if ((data_to_write[0] == 0 || data_to_write[0] == '0') && option->type != _TOKEN_TYPE_OCTAL)
+	if ((data_to_write[0] == 0 || data_to_write[0] == '0')
+	&& (option->type != _TOKEN_TYPE_OCTAL && option->type != _TOKEN_TYPE_POINTER))
 		return (0);
 	if (option->type == _TOKEN_TYPE_HEX_MAJ)
 	{
@@ -101,8 +105,11 @@ int			prefix_router(char *buff, t_info_data_to_write *option, char *data_to_writ
 	}		
 	else if (option->type == _TOKEN_TYPE_OCTAL)
 	{
-		ft_putchar_buff('0', buff);
-		return (1);
+		if (data_to_write[0] != '0')
+		{
+			ft_putchar_buff('0', buff);
+			return (1);
+		}
 	}
 	return (0);
 }

@@ -33,3 +33,9 @@ void	ignore_flag_for_o_x_xmaj(t_info_data_to_write *option)
 	ignore_flag(option, _TOKEN_FLAG_PLUS);
 	ignore_flag(option, _TOKEN_FLAG_SPACE);
 }
+
+void	ignore_flag_for_float(t_info_data_to_write *option)
+{
+	ignore_flag_priority(option, _TOKEN_FLAG_MINUS, _TOKEN_FLAG_ZERO);
+	ignore_flag_priority(option, _TOKEN_FLAG_DOT, _TOKEN_FLAG_ZERO);
+}

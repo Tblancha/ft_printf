@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "state_machina.h"
-
+#include <stdio.h>
 int		apply_precision_cs(t_buff *buffer_s, char *data_to_write,
 		t_info_data_to_write *option)
 {
@@ -31,6 +31,9 @@ int		apply_precision_cs(t_buff *buffer_s, char *data_to_write,
 int		apply_precision_pdiouxxmaj(t_buff *buffer_s,
 		char *data_to_write, t_info_data_to_write *option)
 {
+	if (option->type == _TOKEN_TYPE_OCTAL
+	&& (option->flag_bin & flag_to_bin(_TOKEN_FLAG_DIESE)))
+		option->precision--;
 	if (option->flag_bin & flag_to_bin(_TOKEN_FLAG_DOT))
 		if (option->precision > option->len_arg)
 			buffer_s->len_total += ft_repeat_char_buff('0',
