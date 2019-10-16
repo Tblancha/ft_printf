@@ -6,15 +6,16 @@
 /*   By: tblancha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 05:13:54 by tblancha          #+#    #+#             */
-/*   Updated: 2019/09/30 05:14:41 by tblancha         ###   ########.fr       */
+/*   Updated: 2019/10/16 23:15:47 by tblancha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "state_machina.h"
 
-char			*do_nada(__attribute__((unused)) va_list arg,
-__attribute__((unused)) t_info_data_to_write *option)
+char			*do_nada(va_list arg,
+		t_info_data_to_write *option)
 {
+	(void)arg;
 	option->len_arg = 1;
 	return (option->current_char);
 }

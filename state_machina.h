@@ -6,7 +6,7 @@
 /*   By: tblancha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 15:53:48 by tblancha          #+#    #+#             */
-/*   Updated: 2019/10/01 15:57:47 by tblancha         ###   ########.fr       */
+/*   Updated: 2019/10/16 23:20:06 by tblancha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef	enum				e_token_types
 /*
  ** ________ STRUCTURE
 */
+
 typedef struct				s_token
 {
 	int		*list;
@@ -97,7 +98,7 @@ typedef int					(*t_pf_apply_precision)
 /*
  ** _______ FONCTION PRINCIPAL
 */
-int		ft_printf(char *str, ...);
+int							ft_printf(char *str, ...);
 
 /*
  ** ________ STATE_MACHINA_PARSE
@@ -138,7 +139,7 @@ char						*convert_to_base_min_ulong
 (unsigned long long number_to_convert, const unsigned int base);
 char						*convert_to_base_long(intmax_t number_to_convert,
 		const unsigned int base);
-char						*convert_to_base_min_long(intmax_t number_to_convert,
+char						*convert_to_base_min_long(intmax_t nbr_to_convert,
 		const unsigned int base);
 char						*convert_float(long double number);
 
@@ -222,8 +223,8 @@ void						ignore_flag_priority(t_info_data_to_write *option,
  ** ________ APPLY_PRECISION
 */
 t_pf_apply_precision		pf_apply_precision(int type);
-int							apply_precision_cs(t_buff *buff, char *data_to_write,
-		t_info_data_to_write *option);
+int							apply_precision_cs(t_buff *buff,
+		char *data_to_write, t_info_data_to_write *option);
 int							apply_precision_pdiouxxmaj(t_buff *buff,
 		char *data_to_write, t_info_data_to_write *option);
 

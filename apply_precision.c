@@ -6,12 +6,12 @@
 /*   By: tblancha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 05:08:27 by tblancha          #+#    #+#             */
-/*   Updated: 2019/10/01 13:46:14 by tblancha         ###   ########.fr       */
+/*   Updated: 2019/10/11 05:20:39 by tblancha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "state_machina.h"
-#include <stdio.h>
+
 int		apply_precision_cs(t_buff *buffer_s, char *data_to_write,
 		t_info_data_to_write *option)
 {

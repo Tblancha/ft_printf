@@ -6,7 +6,7 @@
 /*   By: tblancha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 05:15:16 by tblancha          #+#    #+#             */
-/*   Updated: 2019/10/01 13:37:32 by tblancha         ###   ########.fr       */
+/*   Updated: 2019/10/12 01:01:07 by tblancha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int				dispatcher(t_token *token_utils, char *str_original,
 			i++;
 			token_utils->flag_start_index = i;
 			token_utils->index = ret_type_index(token_utils->list, i);
-			token_utils->flag_end_index = token_utils->index;			
+			token_utils->flag_end_index = token_utils->index;
 			dispatch_type(token_utils, str_original, buffer_s, args);
 		}
 		i++;
